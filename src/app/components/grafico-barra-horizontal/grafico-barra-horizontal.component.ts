@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-grafico-barra-horizontal',
   templateUrl: './grafico-barra-horizontal.component.html',
   styleUrls: ['./grafico-barra-horizontal.component.css']
 })
-export class GraficoBarraHorizontalComponent {
+export class GraficoBarraHorizontalComponent implements OnDestroy {
+
+  constructor() {
+    this.intervalo = setInterval( () => {
+
+      console.log('tick');
+      const newResults = [...this.results];
+
+      // tslint:disable-next-line: forin
+      for ( let i in newResults ) {
+        newResults[i].value = Math.round( Math.random() * 500 );
+      }
+
+      this.results = [...newResults];
+    }, 1500);
+  }
 
   results: any[] = [
     {
@@ -26,7 +41,6 @@ export class GraficoBarraHorizontalComponent {
     }
   ];
 
-
   // options
   showXAxis = true;
   showYAxis = true;
@@ -38,8 +52,12 @@ export class GraficoBarraHorizontalComponent {
   yAxisLabel = 'Votos';
 
   colorScheme = 'nightLights';
+  intervalo;
 
-  constructor() { }
+  // tslint:disable-next-line: typedef
+  ngOnDestroy(){
+    clearInterval( this.intervalo )
+  }
 
   // tslint:disable-next-line: typedef
   onSelect(event) {
