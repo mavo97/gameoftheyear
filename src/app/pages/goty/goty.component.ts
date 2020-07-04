@@ -17,7 +17,7 @@ export class GotyComponent implements OnInit {
   ngOnInit(): void {
 
     this.gameService.getNominados().subscribe( games => {
-      console.log(games);
+      // console.log(games);
       this.games = games;
     });
 
@@ -27,6 +27,8 @@ export class GotyComponent implements OnInit {
     this.gameService.votarJuego( juego.id ).subscribe( (resp: any) => {
       if ( resp.ok ){
         Swal.fire('Gracias', resp.mensaje, 'success');
+      } else {
+        Swal.fire('Oops', resp.mensaje, 'error');
       }
     });
   }

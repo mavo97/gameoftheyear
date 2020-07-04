@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Input } from '@angular/core';
 
 @Component({
   selector: 'app-grafico-barra-horizontal',
@@ -7,7 +7,21 @@ import { Component, OnDestroy } from '@angular/core';
 })
 export class GraficoBarraHorizontalComponent implements OnDestroy {
 
+    // options
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = true;
+    showXAxisLabel = true;
+    xAxisLabel = 'Juegos';
+    showYAxisLabel = true;
+    yAxisLabel = 'Votos';
+
+    colorScheme = 'nightLights';
+    // intervalo;
+  @Input() results: any[] = [];
   constructor() {
+    /*
     this.intervalo = setInterval( () => {
 
       console.log('tick');
@@ -19,44 +33,12 @@ export class GraficoBarraHorizontalComponent implements OnDestroy {
       }
 
       this.results = [...newResults];
-    }, 1500);
+    }, 1500); */
   }
-
-  results: any[] = [
-    {
-      name: 'Juego 1',
-      value: 25
-    },
-    {
-      name: 'Juego 2',
-      value: 10
-    },
-    {
-      name: 'Juego 3',
-      value: 25
-    },
-    {
-      name: 'Juego 4',
-      value: 30
-    }
-  ];
-
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Juegos';
-  showYAxisLabel = true;
-  yAxisLabel = 'Votos';
-
-  colorScheme = 'nightLights';
-  intervalo;
 
   // tslint:disable-next-line: typedef
   ngOnDestroy(){
-    clearInterval( this.intervalo )
+    // clearInterval( this.intervalo );
   }
 
   // tslint:disable-next-line: typedef

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "firechat-c2dcf": {
+      "hosting": {
+        "goty": [
+          "firestore-grafica-2cfca"
+        ]
+      }
+    }
+  }
+}
